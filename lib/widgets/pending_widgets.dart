@@ -64,7 +64,7 @@ class _PendingWidgetsState extends State<PendingWidgets> {
                             foregroundColor: Colors.white,
                             icon: Icons.edit,
                             onPressed: (context) {
-                              _showTaskDialog(context);
+                              _showTaskDialog(context, todo: todo);
                             }),
                         SlidableAction(
                             backgroundColor: Colors.red,

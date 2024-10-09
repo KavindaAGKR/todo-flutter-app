@@ -35,6 +35,12 @@ class DatabaseServices {
     return await todoCollection.doc(id).update({'completed': completed});
   }
 
+  // //Update todo status to pending
+  // Future<void> updateTodoStatusPending(String id, bool completed) async {
+  //   return await todoCollection.doc(id).update({'completed': false});
+  // }
+
+
   //delete todo task
   Future<void> deleteTodoTask(String id) async {
     return await todoCollection.doc(id).delete();
