@@ -41,7 +41,7 @@ class DatabaseServices {
   }
 
 //get pending tasks
-  Stream<List<Todo>> get todos {
+  Stream<List<Todo>> get pendingTodos {
     return todoCollection
         .where('uid', isEqualTo: user!.uid)
         .where('completed', isEqualTo: false)
