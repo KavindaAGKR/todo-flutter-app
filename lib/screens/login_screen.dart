@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:todoapp/main.dart';
 import 'package:todoapp/screens/home_screen.dart';
 import 'package:todoapp/screens/signup_screen.dart';
 import 'package:todoapp/sevices/auth_services.dart';
@@ -16,6 +17,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.black,
           foregroundColor: Colors.white,
           title: const Text("Login"),
@@ -71,13 +73,16 @@ class LoginScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const HomeScreen()));
+                            builder: (context) => const Wrapper()));
                   }
                 },
                 child: const Text("Login")),
             Row(
               children: [
-                const Text("Don't have an account?"),
+                const Text(
+                  "Don't have an account?",
+                  style: TextStyle(color: Colors.white),
+                ),
                 TextButton(
                     onPressed: () {
                       Navigator.push(
@@ -85,7 +90,10 @@ class LoginScreen extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => SignupScreen()));
                     },
-                    child: const Text("register"))
+                    child: const Text(
+                      "register",
+                      style: TextStyle(color: Colors.blue),
+                    ))
               ],
             )
           ],

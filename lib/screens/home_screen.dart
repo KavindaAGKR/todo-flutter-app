@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todoapp/models/todo_models.dart';
-import 'package:todoapp/screens/add_todo.dart';
 import 'package:todoapp/screens/login_screen.dart';
 import 'package:todoapp/sevices/auth_services.dart';
 import 'package:todoapp/sevices/database_services.dart';
@@ -20,13 +18,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int _buttonIndex = 0;
 
-  final _widgets = [PendingWidgets(), CompletedWidgets()];
+  final _widgets = [const PendingWidgets(), const CompletedWidgets()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.black,
         title: const Text(
           "Todo Home Screen",
@@ -37,15 +36,18 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () async {
                 // await _auth.signOut();
                 await AuthService().signOut();
+                // ignore: use_build_context_synchronously
+                //Navigator.pushReplacement(context,
+                //    MaterialPageRoute(builder: (context) => LoginScreen()));
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => LoginScreen()));
               },
-              label: Icon(Icons.logout))
+              label: const Icon(Icons.logout))
         ],
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -125,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.white,
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
           onPressed: () {
             _showTaskDialog(context);
           }),
@@ -213,6 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       await _databaseServices.updateTodo(todo.id,
                           _titleController.text, _descriptionController.text);
                     }
+                    // ignore: use_build_context_synchronously
                     Navigator.pop(context);
                   },
                   child: Text(todo == null ? "Add" : "Update"))
